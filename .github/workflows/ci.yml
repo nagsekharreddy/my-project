@@ -33,6 +33,7 @@ jobs:
       with:
         image: sekhardockerid/github_actions_ci-cd
         tags: v1, latest
+        run: docker push sekhardockerid/github_actions_ci-cd:tagname
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
