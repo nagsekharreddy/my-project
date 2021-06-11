@@ -1,9 +1,14 @@
-FROM openjdk:8-jre-alpine
+#Built using # Node.js image
+FROM node:12.20.2-slim
+ENV APP_ROOT /src/
 
-EXPOSE 8080
+# Specify the working directory to $ APP_ROOT
+WORKDIR $APP_ROOT
 
-WORKDIR /usr/app
+COPY package.json $APP_ROOT
+#Install dependent packages
+RUN yarn install
 
-RUN docker build -t java-app .
-
-ENTRYPOINT ["java", "-jar", "my-app-1.0-SNAPSHOT.jar"]
+COPY . $APP_ROOT
+#Run Docker File
+CMD ["yarn", "start"]
